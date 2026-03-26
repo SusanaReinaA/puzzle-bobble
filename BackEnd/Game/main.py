@@ -1,6 +1,6 @@
+import pygame
 
-from BackEnd.game.Game import Game
-
+from BackEnd.Game.Game import Game
 if __name__ == "__main__":
     game = Game()
     game.run()

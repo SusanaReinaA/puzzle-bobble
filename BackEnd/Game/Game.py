@@ -2,8 +2,8 @@
 import pygame
 import sys
 
-from BackEnd.game.Bubble import Bubble
-from FrontEnd.ui.styles import BUBBLE_COLOR, BG_COLOR
+from pygame.locals import BG_COLOR
+from FrontEnd.ui.styles import BUBBLE_COLOR ,BG_COLOR
 
 
 class Game:
