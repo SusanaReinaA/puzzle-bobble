@@ -1,65 +1,22 @@
 
-import pygame
-import sys
-
-from pygame.locals import BG_COLOR
-from FrontEnd.ui.styles import BUBBLE_COLOR ,BG_COLOR
+from puzzle_bobble.BackEnd.Grid import Grid
+from puzzle_bobble.FrontEnd.ui.Styles import BUBBLE_COLORS
 
 
 class Game:
     def __init__(self):
-        pygame.init()
+        self.grid = Grid(8, 6, 20)
+        self.init_bubbles()   #
 
-        info = pygame.display.Info()
-        self.width = info.current_w
-        self.height = info.current_h
+    def init_bubbles(self):   #
+        self.grid.add_bubble(0, 0,BUBBLE_COLORS["red"])
+        self.grid.add_bubble(0, 1,BUBBLE_COLORS["red"])
+        self.grid.add_bubble(0, 2,BUBBLE_COLORS["blue"])
+        self.grid.add_bubble(1, 0, BUBBLE_COLORS["yellow"])
+        self.grid.add_bubble(1, 1, BUBBLE_COLORS["purple"])
+        self.grid.add_bubble(1, 2, BUBBLE_COLORS["green"])
+        self.grid.add_bubble(2, 0, BUBBLE_COLORS["yellow"])
+        self.grid.add_bubble(2, 1, BUBBLE_COLORS["purple"])
 
-        self.screen = pygame.display.set_mode(
-            (self.width, self.height),
-            pygame.FULLSCREEN
-        )
-
-        pygame.display.set_caption("Puzzle Bobble - L2")
-
-        self.clock = pygame.time.Clock()
-        self.running = True
-
-        # colores
-        self.bg_color = BG_COLOR
-
-        # burbuja
-        self.bubble = Bubble(
-            self.width // 2,
-            self.height // 2,
-            20,
-            BUBBLE_COLOR
-        )
-
-    def handle_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.running = False
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    self.running = False
-
-    def update(self):
-        pass
-
-    def draw(self):
-        self.screen.fill(self.bg_color)
-
-        self.bubble.draw(self.screen)
-
-        pygame.display.flip()
-
-    def run(self):
-        while self.running:
-            self.handle_events()
-            self.update()
-            self.draw()
-            self.clock.tick(60)
-
-        pygame.quit()
-        sys.exit()
+    def draw(self, surface):   #
+        self.grid.draw(surface)
