@@ -118,6 +118,7 @@ class Game:
     def run(self):
         while self.running:
             dt = self.clock.tick(60) / 1000
+            dt = min(dt, 0.05)
             self.handle_event()
 
             if not self.game_over and not self.paused:
